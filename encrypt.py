@@ -44,13 +44,13 @@ def encrypt_file(input_file, output_file, key):
 )
 def main(output_filename, files):
     """Encrypt a list of files into a tarball."""
-    create_tarball(output_filename, files)
+    create_tarball(f"{output_filename}.tar.gz", files)
 
     passphrase = getpass.getpass(
         "Enter a passphrase to encrypt the tarball: ",
     )
     key = derive_key(passphrase)
-    encrypt_file(output_filename, f"{output_filename}.enc", key)
+    encrypt_file(f"{output_filename}.tar.gz", f"{output_filename}.enc", key)
 
 
 if __name__ == "__main__":

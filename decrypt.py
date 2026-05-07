@@ -1,7 +1,7 @@
 #! /usr/bin/env -S uv run --script
 # /// script
 # requires-python = ">=3.14"
-# dependencies = ["tqdm","click","cryptography"]
+# dependencies = ["click","cryptography"]
 # ///
 
 import getpass
@@ -39,27 +39,25 @@ def extract_tarball(tarball_name, extract_to="."):
 @click.command()
 @click.argument("encrypted_file", type=click.Path(exists=True))
 @click.option(
-    "-o",
-    "--output",
+    "-t",
+    "--temp_file_location",
     default="answers.tar.gz",
     help="Temporary decrypted tarball filename",
 )
-@click.option("--extract-to", default="facit", help="Directory to extract files into")
-def main(encrypted_file, output, extract_to):
+def main(encrypted_file, temp_file_location):
     """Decrypt and extract an encrypted answer archive."""
 
-    passphrase = getpass.getpass("Enter decryption passphrase: ")
+    passphrase = getpass.getpass("Ange krypteringsnyckeln: ")
     key = derive_key(passphrase)
 
     try:
-        decrypt_file(encrypted_file, output, key)
-        extract_tarball(output, extract_to)
+        decrypt_file(encrypted_file, temp_file_location, key)
+        extract_tarball(temp_file_location, encrypted_file.split(".")[0])
+        os.remove(temp_file_location)
     except InvalidToken:
         print("ERROR: Incorrect passphrase or corrupted file.")
     except Exception as e:
         print(f"ERROR: {e}")
-
-    os.remove(output)
 
 
 if __name__ == "__main__":
