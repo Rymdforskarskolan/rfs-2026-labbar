@@ -1,10 +1,10 @@
-# Notera att konstant variabel är UPPER_SNAKE_CASE
-PASSWORD = "JagÄrEnAstronaut"
+# Ta in ett år
+year = int(input("Ange ett år: "))
 
-# Fråga efter ett lösen
-pwd = input("Ange lösenordet: ")
-
-if pwd == PASSWORD:
-    print("Lösenordet är korrekt!")
+if year >= 0:
+    if (year % 4 == 0) and not ((year % 100 == 0) and (year % 400 != 0)):
+        print("Året är ett skottår")
+    else:
+        print("Året är inte ett skottår")
 else:
-    print("Lösenordet är inte korrekt!")
+    print("Ogiltigt år!")

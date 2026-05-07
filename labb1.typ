@@ -32,7 +32,7 @@ Ange krypteringsnyckeln: hej
 === Miniräknaren
 Skriv en enkel miniräknare. Den skall fråga användaren om två tal: `a` och `b`. Därefter skall den summera talen, och skriva ut resultatet.
 
-=== Åldespådom
+=== Ålderspådom
 Du har vält att bli spåperson. Din tjänst går ut på att förutspå hur gammal någon kommer att vara om 10 år. Skriv ett program som frågar användaren om deras ålder och skriver ut hur gamla de är om 10 år.
 
 === Udda eller jämnt? <odd-even>
@@ -109,3 +109,51 @@ Som bekant går \~365.25 dagar på ett år. Den ursprungliga Julianska algoritme
 
 För att låsa upp facit: beräkna ifall år 13874844 är ett skottår. Nyckeln är "ja" om det är ett skottår, och "nej" annars.
 // Svaret: ja
+
+== Nivå 3
+
+=== Lösare för pq-formeln
+Som ni alla sett innan kan vi lösa ekvationer på formen
+$
+  x^2 + p x + q = 0
+$
+med hjälp av pq-formeln:
+$
+  x = - p / 2 plus.minus sqrt((p / 2)^2 - q).
+$
+
+Skriv ett program som läser in $p$ och $q$ för att sedan skriva ut lösningen, eller att det inte finns någon lösning. Vid en dubbelrot skall endast ena lösningen skrivas ut.
+
+*Ledning:* Ni kan ta roten ur ett tal genom att höja upp det till `0.5` eller `1 / 2`. Ni höjer upp med `**`-operatorn.
+
+=== Trianglar
+
+Be om tre sidlängder för en triangel. Avgör sedan ifall de sidorna kan bilda en triangel. Om de kan bilda en triangel avgör även om denna triangel är liksidig, likbent eller rätvinklig. Skriv därefter ut programmets fynd.
+
+*Ledning:* Ni kan avgöra om en triangel är giltig m.h.a. triangelolikhetssatsen:
+$
+  a + b > c quad "och" quad a + c > b quad "och" quad b + c > a <==> "giltig"
+$
+där $a,b,c$ är triagelns sidlängder. Visst finns det också en tjusig sats om räta vinklar från en grek?
+
+=== Taxametern
+Du skall skriva en taxameter för ett taxibolag. Deras priser funkar såhär: 200 kr basavgift sedan 12 kr / km för de första 5 km, därefter 8 kr / km. Om du beställer mellan kl. 22-06 så utgår även kvällstaxa på +25%.
+
+Skriv ett program som tar in färdsträcka och beställningstimme för att sedan skriva ut priset avrundat till 2 decimaler. Du kan använda `round(a, b)` för att avrunda talet `a` till `b` decimaler.
+
+=== Växelmaskin - Facitfråga
+Du skall konstruera ett program som räknar ut hur du kan dela upp en godtycklig summa hela kronor på kontanter. De giltiga kontantvalörerna idag är:
+- 1000 kr
+- 500 kr
+- 200 kr
+- 100 kr
+- 50 kr
+- 20 kr
+- 10 kr
+- 5 kr
+- 2 kr
+- 1 kr
+*Ledning:* Modulo (`%`) är din vän, likaså tillsättande operatörer som `+=` och `-=`. Även trunkerande division (`//`) kan vara fiffigt.
+
+För att låsa upp facit: Beräkna växeln av 135874348 kr. Nyckeln kommer att vara\ "`<1000><500><200><100><50><20><10><5><2><1>`" där du sätter in antal för varje sedel. En hypotetisk nycket skulle kunna vara "2120001010". noterat att "`<1000>`" kan vara mycket större än en siffra, men det är okej och formatet följs ändå.
+// Svar: 135874011020111

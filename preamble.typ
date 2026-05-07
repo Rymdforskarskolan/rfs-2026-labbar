@@ -22,6 +22,7 @@
   set text(font: ("Open Sans", "Liberation Sans"), size: 10.5pt, weight: 300)
 
   show raw.where(block: true): it => box(fill: color.luma(95%), inset: 10pt, radius: 5pt, it)
+  set list(indent: .7em, body-indent: .5em, spacing: .8em)
 
   box(
     stroke: 3pt + color.rgb("#ffc600"),
