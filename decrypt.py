@@ -47,7 +47,7 @@ def extract_tarball(tarball_name, extract_to="."):
 def main(encrypted_file, temp_file_location):
     """Decrypt and extract an encrypted answer archive."""
 
-    passphrase = getpass.getpass("Ange krypteringsnyckeln: ")
+    passphrase = getpass.getpass("Ange krypteringsnyckeln: ", echo_char="*")
     key = derive_key(passphrase)
 
     try:

@@ -11,7 +11,7 @@ elif grade == "C":
     print(15)
 elif grade == "B":
     print(17.5)
-elif grade == "A"
+elif grade == "A":
     print(20)
 else:
     # Detta fall körs om inget annat matchar

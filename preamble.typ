@@ -1,3 +1,6 @@
+#import "@preview/codly:1.3.0": *
+
+
 #let template(
   body,
   title: [Labb],
@@ -21,7 +24,14 @@
 
   set text(font: ("Open Sans", "Liberation Sans"), size: 10.5pt, weight: 300)
 
-  show raw.where(block: true): it => box(fill: color.luma(95%), inset: 10pt, radius: 5pt, it)
+  show: codly-init.with()
+  codly(fill: luma(98%))
+
+  show raw.where(block: false): it => box(fill: luma(96%), inset: (x: 3pt, y: 0pt), outset: (x: 0pt, y: 3pt), text(
+    fill: purple.darken(30%),
+    it,
+  ))
+
   set list(indent: .7em, body-indent: .5em, spacing: .8em)
 
   box(
