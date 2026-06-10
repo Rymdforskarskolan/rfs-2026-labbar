@@ -22,7 +22,7 @@
   show heading.where(depth: 3): set text(font: ("Open Sans", "Liberation Sans"), weight: 700, size: 11pt)
   show heading.where(depth: 3): set heading(numbering: (.., level, last) => str(level) + "." + str(last))
 
-  set text(font: ("Open Sans", "Liberation Sans"), size: 10.5pt, weight: 300)
+  set text(font: ("Open Sans", "Liberation Sans"), size: 10.5pt, weight: 300, lang: "sv")
 
   show: codly-init.with()
   codly(fill: luma(98%))
@@ -31,6 +31,17 @@
     fill: purple.darken(30%),
     it,
   ))
+
+  show ref: it => {
+    let q = heading
+    let el = it.element
+
+    context {
+      if el == none or el.func() != q or el.depth != 3 { return it }
+    }
+
+    [fråga #link(el.location(), numbering(el.numbering, ..counter(heading).at(el.location()))) ]
+  }
 
   set list(indent: .7em, body-indent: .5em, spacing: .8em)
 

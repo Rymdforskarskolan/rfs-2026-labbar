@@ -112,3 +112,76 @@ $
   V_"bränsle" = 1.5 m + 500,
 $
 och ger bränslevolym i m#super[3] för en massa $m$ i kg. Programmet skall sedan, m.h.a. denna funktion, fråga efter ett godtyckligt antal laster och när användaren skriver "klar" rapportera sammanlagd bränsleförbrukning samt förbrukning för varje last där det framgår vilket nummer varje last har.
+
+=== Rymdkolonin
+
+Skapa en klass `Colony` som har attribut för ett namn på kolonin, populationen och tillväxthastigheten per år av populationen. Skriv en loop som simulerar 3 olika kolonier över tre år och printa sedan deras slutgiltiga population.
+
+=== Avkodaren
+<aliens>
+Vi har tagit emot chiffrerade meddelanden från utomjordingar! Våra forskare har insett att de använder ett Ceasarchiffer med ett skifte på +3. Skiljetecken lämnas oförändrade. De behöver att du skriver ett program som kan avkoda dessa medellanden i storvolym. Vid varje körning av programmet skall användaren frågas om ett kodat medellande och avkodade svaret skall returneras. Testa ert program genom att avkoda följande medellanden:
+#table(
+  columns: (1fr, 1fr),
+  [yl nrpphu wd hud nrvvru icu yhwhqvndsoljd håshulphqw!], [mrughqv nrpphu dww iculqwdv dy rvv, edud ybqwd!],
+  [kdk, ql ndq vbnhuw lqwh hqv obvd ghvvd! pbqqlvnru bu va gxppd.],
+  [qbu yl wdjlw hud nru, va nrpphu yl dww wd hud iau qbvw. vhq näfnoljdu. vhq julvdu, rfk va ylgduh.],
+)
+
+=== Fibonacci
+
+Skriv en funktion som räknar ut $N$ Fibonaccital utan rekursion. Räkna ut det 256:e Fibonaccitalet.
+
+=== Primtalsfyndet
+
+Skriv en funktion som kollar ifall ett tal är ett primtal. Använd den för att hitta alla primtal mellan 2 och 50.
+
+=== Palindrom
+
+Skriv en funktion som kollar ifall ett ord är ett palindrom. Det vill säga, om ordet stavas likadant bak-och-fram som det gör åt rätt håll. Ett exempel på palindrom är "Racecar".
+
+=== Krypteringen --- Facitfråga
+
+Utomjordingarna från @aliens visade sig vara taskiga. Vi vill därför kunna skicka taskiga medellanden tillbaka. Skriv en funktion som kodar ett medellande som användaren kan ange. Använd samma +3 Ceasarchiffer som i @aliens. Koda sedan följande medellande.
+
+#table(
+  columns: (1fr, 1fr),
+  [Ni kommer absolut inte vinna, människor är starka!], [Våra kossor är inte för ert vetenskapliga bruk!],
+  [Vi kan absolut läsa det ni skriver, och vi skriver till med tillbaka!],
+  [Vi förstår inte er fixering på boskap, men vi kommer inte att låta er ta dem.],
+)
+
+För att låsa upp facit: Koda medellandet ned till höger. De första 25 bokstäverna från det krypterade medellandet, med endast små bokstäver utan skiljetecken och mellanslag, är er nyckel.
+// Svar: ylicuvwaulqwhhuilåhulqjsa
+
+== Nivå 3
+
+=== Rymdkoloni 2: Electric boogaloo
+
+Det är ju väldigt tjusigt att kunna hålla koll på population, men du som sitter i styrelsen vill ju kunna hålla koll på varje individuell kolonist. Skriv en till klass `Colonist` och utöka klassen `Colony` för att kunna lagra en kollektion av kolonister där du med hjälp av en metod `Colony.get_colonist(name)` kan hämta en kolonist via namn. Du ska även kunna ta bort och lägga till kolonister med `Colony.add_colonist(name)` och `Colony.remove_colonist(name)`.
+
+*Bonus:* Gör så att man håller koll på ålder och yrke för varje kolonist. Varje kolonist skall ha en metod `Colonist.birthday()` som printar en festlig hälsning och ökar deras ålder med 1.
+
+=== Strängkompression
+
+När man komprimerar data så spar man ofta plats på att eliminera upprepningar. Skriv en funktion som komprimerar en sträng genom att ersätta upprepade karaktärer med karaktären och dess antal. Några exempel: `"aaaaabb" -> "a3b2"`, `"Hello, there" -> "Hel2o there"`, osv. Testa att komprimera "Jag är sååååå taggad på att träffa alla!".
+
+=== Asteroidnavigation --- Mycket svår
+
+Skapa en klass `AsteroidField` som representerar ett 10x10 rutnät av ett asteroidfält. Varje cell kan vara en asteroid eller inte. Ett rymdskepp skall kunna börja någonstans på vänstra kanten och ta sig till högra kanten. Koden skall klara samtliga startpositioner. Asteroidfältet får vara samma varje gång eller slumpat. Skeppet får inte lämna området uppåt eller nedåt. Skeppet skall röra sig en kolumn i taget och undvika asteroider.
+
+Det skall finnas en metod `AsteroidField.is_asteroid_in_front(x, y)` som berättar ifall du kommer krocka i nästa steg. Skeppet kan i sådana fall röra sig sidled, men _aldrig_ till `y < 0` eller `y > 9` med övre vänstra hörnet i (0, 0).
+
+Rymdskeppet skall representeras av klassen `SpaceShip` och denna skall ha en metod `SpaceShip.navigate(asteroid_field, start_row)` som utför denna navigering. Metod skall även printa vägen skeppet har tagit till terminalen när den är klar. Skeppets rutt visas med `X` för varje cell passerad. Asteroider visas med `O`. Ett exempel (parenteser ej obligatoriska):
+
+```stdout
+[ ] [ ] [ ] [X] [X] [X] [O] [X] [X] [x]
+[ ] [X] [X] [X] [O] [X] [X] [X] [O] [ ]
+[X] [X] [O] [ ] [ ] [O] [ ] [ ] [ ] [ ]
+[ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [O] [ ]
+[ ] [ ] [ ] [O] [ ] [ ] [O] [ ] [ ] [ ]
+[ ] [ ] [O] [ ] [ ] [O] [ ] [ ] [ ] [ ]
+[ ] [ ] [ ] [O] [ ] [ ] [ ] [ ] [O] [ ]
+[ ] [O] [ ] [ ] [ ] [ ] [O] [ ] [ ] [ ]
+[ ] [ ] [ ] [O] [ ] [O] [ ] [ ] [ ] [ ]
+[ ] [O] [ ] [ ] [O] [ ] [ ] [O] [ ] [ ]
+```
