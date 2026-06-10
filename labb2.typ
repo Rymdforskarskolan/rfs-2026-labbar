@@ -28,6 +28,22 @@ För er som eventuellt använder Windows på egen dator, krävs att ni skriver f
 Ange krypteringsnyckeln: hej
 ```
 
+== En not om slumpning
+#counter(heading).update(1)
+I vissa uppgifter kan det vara användbart för dig att kunna slumpa saker. Då kan du importera biblioteket `random` precis som vi gjorde med `math`. Då kan du anropa `random.randint(start, stop)` och `random.randrange(start, stop)` för att få `int` resp. `float` slumpmässigt på ett givet intervall. Du kan också använda `random.choice(collection)` för att få ett slumpmässigt värde ur en ordnad kollektion.
+
+Exempel
+```py
+import random
+
+random_integer = random.randint(0, 15)
+random_float = random.randrange(1.3, 4.7)
+
+my_list = [1, 3, 5]
+random_element = random.choice(my_list)
+```
+
+
 == Nivå 1
 
 === Raketbränsle
@@ -64,7 +80,13 @@ och ger bränslevolym i m#super[3] för en massa $m$ i kg. Programmet skall seda
 Skriv en klass, `Astronaut`, som lagrar en astronauts träningsinfo. Varje astronaut skall ha ett betyg från 0--100 som bedömer hur "redo" de är. En astronaut med mer än 90 i betyg anses vara redo. Klassen skall därför ha en metod som returnar vare sig astronauten är redo eller ej beroende på dess betyg.
 
 === Satellitomlopp
-Skapa en funktion som estimerar en satellits omloppstid baserat på dess höjd från jordytan. Jordens radie är $R_plus.o = 6 371 "km"$. Gör sedan ett program som med denna funktion beräknar omloppstiden för exakt 6 satelliter som användare en och en matar in.
+Skapa en funktion som estimerar en satellits omloppstid baserat på dess höjd från jordytan. Jordens radie är $R_plus.o = 6 371 "km"$. Jordens massa är $M_plus.o = 5.9722 dot 10^24$. Allmänna gravitationskonstanten är $G approx 6.6743 dot 10^(-11)$. Det gäller att
+$
+  a_g = G M_plus.o / r^2
+$
+där $r$ är avstånd från jordens mitt.
+
+Gör sedan ett program som med denna funktion beräknar omloppstiden för exakt 6 satelliter som användare en och en matar in.
 
 === Rymdskepsskölden
 Du är en utvecklar för NASA:s nya interstellära rymdskepp som skall ha sprillans nya energisköldar. De vill ha en terminal där de kan följa sköldens energinivå. Programmet skall ad infinitum fråga användare hur många procent som skölden laddats eller skadats och uppdatera laddningen. Den för aldrig under- eller överskriva 0% resp 100%.
@@ -161,15 +183,12 @@ Det är ju väldigt tjusigt att kunna hålla koll på population, men du som sit
 
 *Bonus:* Gör så att man håller koll på ålder och yrke för varje kolonist. Varje kolonist skall ha en metod `Colonist.birthday()` som printar en festlig hälsning och ökar deras ålder med 1.
 
-=== Strängkompression
-
-När man komprimerar data så spar man ofta plats på att eliminera upprepningar. Skriv en funktion som komprimerar en sträng genom att ersätta upprepade karaktärer med karaktären och dess antal. Några exempel: `"aaaaabb" -> "a3b2"`, `"Hello, there" -> "Hel2o there"`, osv. Testa att komprimera "Jag är sååååå taggad på att träffa alla!".
 
 === Asteroidnavigation --- Mycket svår
 
 Skapa en klass `AsteroidField` som representerar ett 10x10 rutnät av ett asteroidfält. Varje cell kan vara en asteroid eller inte. Ett rymdskepp skall kunna börja någonstans på vänstra kanten och ta sig till högra kanten. Koden skall klara samtliga startpositioner. Asteroidfältet får vara samma varje gång eller slumpat. Skeppet får inte lämna området uppåt eller nedåt. Skeppet skall röra sig en kolumn i taget och undvika asteroider.
 
-Det skall finnas en metod `AsteroidField.is_asteroid_in_front(x, y)` som berättar ifall du kommer krocka i nästa steg. Skeppet kan i sådana fall röra sig sidled, men _aldrig_ till `y < 0` eller `y > 9` med övre vänstra hörnet i (0, 0).
+Det skall finnas åtminstone en metod `AsteroidField.is_asteroid_in_front(x, y)` som berättar ifall du kommer krocka i nästa steg. Det kan krävas fler metoder för att lösa uppgiften. Skeppet kan i sådana fall röra sig sidled, men _aldrig_ till `y < 0` eller `y > 9` med övre vänstra hörnet i (0, 0).
 
 Rymdskeppet skall representeras av klassen `SpaceShip` och denna skall ha en metod `SpaceShip.navigate(asteroid_field, start_row)` som utför denna navigering. Metod skall även printa vägen skeppet har tagit till terminalen när den är klar. Skeppets rutt visas med `X` för varje cell passerad. Asteroider visas med `O`. Ett exempel (parenteser ej obligatoriska):
 
@@ -185,3 +204,54 @@ Rymdskeppet skall representeras av klassen `SpaceShip` och denna skall ha en met
 [ ] [ ] [ ] [O] [ ] [O] [ ] [ ] [ ] [ ]
 [ ] [O] [ ] [ ] [O] [ ] [ ] [O] [ ] [ ]
 ```
+
+=== Sifferpar
+
+Skriv en funktion som tar en lista med tal och hittar alla par vars summa uppgår till ett visst antal givet som argument. Testa att hitta alla par som adderar till 12 i listan `[6, 6, 7, 1, 10, 2, 5, 8, 9, 3, 14, 67]`.
+
+*Bonus:* Kan du göra detta med hjälp av biblioteket `itertools` för att iterera över alla kombinationer? Läs på själv om hur `itertools` fungerar.
+
+=== Sten, sax, påse
+
+Skriv en klass `RockPaperScissorsPlay` som representerar ett drag i en match Sten, sax, påse. Klassen ska ha en konstruktor som låter dig uttryckligen välja drag och en metod `RockPaperScissorsPlay.random()` som skapar en ny slumpmässig instans. Du skall sedan skriva ett program som låter användaren spela en bäst-av-3-match mot slumpen genom att skriva sitt drag i terminalen varje gång.
+
+*Bonus:* Kan du skriva en klass `RockPaperScissorsGame` som har en metod `RockPaperScissorsGame.run_game()` som hanterar hela spelets gång.
+
+=== Tidhantering
+
+Skriv en class `Time` som låter en lagra en tid i timmar, minuter och sekunder. Det skall finnas metoder för att printa, addera och subtrahera tider. Det skall även gå att jämföra två tider ifall de är större, mindre eller lika.
+
+*Bonus:* Kan du skriva en till klass: `DateTime` som lagrar ett objekt av `Time` och ett objekt av ytterligare en klass: `Date`? Samma operationer gäller, men nu skall även dagar vara inblandade.
+
+*Bonus2:* Kan du implementera de så kallade _dundermetoderna_ `__add__()`, `__sub__()`, `__gt__()`, `__lt__()`, `__le__()`, `__ge__()`, `__eq__()` och `__neq__()` för antingen alla tre klasser eller bara klassen `Time`? Läs på själv om vad dessa är.
+
+=== Anomalidetektorn
+
+Skriv en funktion som upptäcker anomalier i sensordata. En bit sensordata är ett 5x5 rutnät av `float`s där en anomali är ett sådan värde som är minst 1.5 ggr större än _någon_ av dess grannar. Programmet skall sedan rapportera hur många anomalier som upptäcktes och vart de ligger i rutnätet.
+
+Ett exempel:
+
+```
+[ 12.5 ] [ 8.7 ] [ 12.4 ] [  4.5 ] [ 12.9 ]
+[  9.1 ] [ 7.2 ] [  5.2 ] [  3.5 ] [ 15.3 ]
+[ 10.2 ] [ 5.7 ] [  4.0 ] [ 17.3 ] [  9.4 ]
+[ 11.3 ] [ 2.1 ] [  1.3 ] [  8.9 ] [ 10.6 ]
+[ 13.8 ] [ 3.4 ] [  9.2 ] [ 22.5 ] [ 13.3 ]
+```
+
+där anomalierna är `(0, 2): 12.4, (0, 4): 12.9, (1, 4): 15.3, (2, 0): 10.2, (2, 1): 5.7, (2, 2): 4.0, (2, 3): 17.3, (3, 0): 11.3, (3, 1): 2.1, (3, 3): 8.9, (4, 0): 13.8, (4, 1): 3.4, (4, 2): 9.2, (4, 3): 22.5`
+
+=== Rymdstationen
+
+Gör en klass som heter `SpaceStation` som representerar en modulär rymdstation. Gör även en klass som heter `SpaceStationModule` som representerar en sådan modul. Varje modul skall hålla koll på dess besättningskapacitet, namn och elförbrukning.
+
+Den gemensamma rymdstationsklassen skall ha metoder för att lägga till och ta bort moduler samt en metod som sammanfattar besättningskapacitet och elförbrukning på terminalen.
+
+=== Strängkompression --- Facitfråga
+
+*Del A:* När man komprimerar data så spar man ofta plats på att eliminera upprepningar. Skriv en funktion som komprimerar en sträng genom att ersätta upprepade karaktärer med karaktären och dess antal. Några exempel: `"aaaaabb" -> "a3b2"`, `"Hello, there" -> "Hel2o there"`, osv. Testa att komprimera "Jag är sååååå taggad på att träffa alla!".
+
+*Del B:* Skriv en motsvarande funktion som åter inflaterar det komprimerade värdet. Notera att strängen endast kan bestå av bokstäver med detta system.
+
+För facit: inflatera strängen "b3c7h8astronomio9" och resultatet är din nyckel.
+// Svar: bbbccccccchhhhhhhhastronomiooooooooo
