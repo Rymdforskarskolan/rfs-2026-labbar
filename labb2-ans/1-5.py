@@ -5,10 +5,12 @@ while True:
 
     match menu_choice:
         case "" | "l":
-            energy_level += float(input("Ange laddning (%):"))
+            # Vid laddning tar vi nuvarande + antal eller 100, vad som än är minst.
+            energy_level = min(energy_level + float(input("Ange laddning (%):")), 100)
 
         case "s":
-            energy_level -= float(input("Ange skada (%):"))
+            # Vid skada tar vi nuvarande - antal eller 0, vad som än är störst.
+            energy_level = max(energy_level + float(input("Ange skada (%):")), 0)
 
         case _:
             print("Ogiltigt val!")

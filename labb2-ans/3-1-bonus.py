@@ -1,6 +1,14 @@
 class Colonist:
-    def __init__(self, name):
+    def __init__(self, name, age, job):
         self.name = name
+        self.age = age
+        self.job = job
+
+    def birthday(self):
+        # Öka ålder med 1
+        self.age += 1
+        # Gratta sig själv
+        print(f"Grattis på födelsedagen, {self.name}!")
 
 
 class Colony:
@@ -8,8 +16,8 @@ class Colony:
         self.name = name
         self.colonists = colonists
 
-    def add_colonist(self, name):
-        self.colonists.append(Colonist(name))
+    def add_colonist(self, name, age, job):
+        self.colonists.append(Colonist(name, age, job))
 
     def remove_colonist(self, name):
         idx = None
